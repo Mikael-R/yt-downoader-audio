@@ -40,6 +40,7 @@ def link_valido(link):
         return False
 
 
+print('>>> Verificando conexão.')
 if internet() == False:
     print('>>> Não foi possível estabelecer uma conexão.')
     exit()
@@ -64,10 +65,10 @@ for s in audiostreams:
     menu_texto(num, qualidade, formato, tamanho)
 
 opcao = input('\nOpção: ').strip()
-while not opcao.isnumeric() or int(opcao) > num - 1:
+while not opcao.isnumeric() or int(opcao) > num - 1 or int(opcao) < 0:
     print('>>> Digite uma opção válida.')
     opcao = input('\nOpção: ').strip()
-opcao = int(opcao)
+opcao = int(opcao) - 1
 
-audiostreams[opcao - 1].download()
+audiostreams[opcao].download()
 print('>>> Donwload concluído.')
