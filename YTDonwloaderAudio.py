@@ -1,5 +1,15 @@
 from pafy import *
+from requests import get
+from requests.exceptions import ConnectionError
 
+
+def internet():
+    try:
+        get('http://meuip.com/api/meuip.php')
+    except ConnectionError:
+        return False
+    else:
+        return True
 
 
 def menu_texto(num, qualidade, formato, tamanho):
@@ -29,6 +39,10 @@ def link_valido(link):
     except:
         return False
 
+
+if internet() == False:
+    print('>>> Não foi possível estabelecer uma conexão.')
+    exit()
 
 link = input('\nLink: ').strip()
 while link_valido(link) == False:
